@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reveal the Name</title>
+  <title>Reveal Sequence</title>
   <style>
     body {
       background: black;
@@ -26,23 +26,39 @@
   </style>
 </head>
 <body>
-  <div id="reveal">Accessing identity...</div><span class="blinker"></span>
+  <div id="reveal">Initializing...</div><span class="blinker"></span>
 
   <script>
-    const message = "\n\nName Revealed:\n>>> Alex Vega <<<";
+    const lines = [
+      "\n\nScanning database...",
+      "\n\nIdentity Match Found",
+      "\n\n>>> Alex Vega <<<",
+      "\nAlias: Bug Hunter",
+      "\n\nWelcome to Tecnología Digital 2"
+    ];
+
     const revealDiv = document.getElementById("reveal");
 
-    let i = 0;
+    let currentLine = 0;
+    let charIndex = 0;
+
     function typeNextChar() {
-      if (i < message.length) {
-        revealDiv.textContent += message.charAt(i);
-        i++;
-        setTimeout(typeNextChar, 100); // adjust speed here
+      if (currentLine < lines.length) {
+        const line = lines[currentLine];
+        if (charIndex < line.length) {
+          revealDiv.textContent += line.charAt(charIndex);
+          charIndex++;
+          setTimeout(typeNextChar, 80); // Typing speed
+        } else {
+          currentLine++;
+          charIndex = 0;
+          setTimeout(typeNextChar, 800); // Pause between lines
+        }
       }
     }
 
-    // Start typing after a dramatic pause
-    setTimeout(typeNextChar, 2000);
+    // Start the sequence
+    setTimeout(typeNextChar, 1500); // Initial dramatic pause
   </script>
 </body>
 </html>
