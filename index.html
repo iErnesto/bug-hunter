@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reveal the Name</title>
+  <style>
+    body {
+      background: black;
+      color: lime;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 2rem;
+      padding: 50px;
+    }
+    #reveal {
+      white-space: pre-wrap;
+    }
+    .blinker {
+      display: inline-block;
+      width: 10px;
+      background: lime;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="reveal">Accessing identity...</div><span class="blinker"></span>
+
+  <script>
+    const message = "\n\nName Revealed:\n>>> Alex Vega <<<";
+    const revealDiv = document.getElementById("reveal");
+
+    let i = 0;
+    function typeNextChar() {
+      if (i < message.length) {
+        revealDiv.textContent += message.charAt(i);
+        i++;
+        setTimeout(typeNextChar, 100); // adjust speed here
+      }
+    }
+
+    // Start typing after a dramatic pause
+    setTimeout(typeNextChar, 2000);
+  </script>
+</body>
+</html>
